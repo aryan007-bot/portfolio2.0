@@ -46,8 +46,9 @@ I'm always looking to collaborate on exciting projects. Feel free to reach out!
 I love experimenting with frontend animations and exploring futuristic UI designs!
 
 
-![Screenshot 2024-10-08 161504](https://github.com/user-attachments/assets/da659221-fdc2-4eac-91c8-1a9244c1153e)
 
+
+![Screenshot 2024-10-08 161504](https://github.com/user-attachments/assets/a96e21d6-7461-4f7a-b773-8bfe8b40924f)
 
 ---
 

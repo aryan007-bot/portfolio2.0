@@ -1,63 +1,36 @@
 "use client";
 import React, { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
-import ProjectTag from "./ProjectTag";
+import ProjectTag from "./ProjectTag"; // Ensure you create a ProjectTag component
 import { motion, useInView } from "framer-motion";
 
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
-    description: "Project 1 description",
-    image: "/images/projects/1.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    title: "Xora - A SaaS landing page with modern UI",
+    description: "Xora is a Modern UI/UX SaaS website developed using React.js and Tailwind CSS that exemplifies modern UI/UX principles.",
+    imgUrl: "/1.svg.png",
+    gitUrl: "https://github.com/yourusername/xora",
+    previewUrl: "https://xora-bo7q.vercel.app/",
+    tag: "Web",
   },
   {
     id: 2,
-    title: "Potography Portfolio Website",
-    description: "Project 2 description",
-    image: "/images/projects/2.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    title: "Yoom - Video Conferencing App",
+    description: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
+    imgUrl: "/2.png",
+    gitUrl: "https://github.com/yourusername/yoom",
+    previewUrl: "https://yoom-git-main-aryan-s-projects-ab121786.vercel.app/",
+    tag: "Web",
   },
   {
     id: 3,
-    title: "E-commerce Application",
-    description: "Project 3 description",
-    image: "/images/projects/3.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 4,
-    title: "Food Ordering Application",
-    description: "Project 4 description",
-    image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 5,
-    title: "React Firebase Template",
-    description: "Authentication and CRUD operations",
-    image: "/images/projects/5.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 6,
-    title: "Full-stack Roadmap",
-    description: "Project 5 description",
-    image: "/images/projects/6.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    title: "Animated Apple iPhone 3D Website",
+    description: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects.",
+    imgUrl: "/3.png",
+    gitUrl: "https://github.com/yourusername/apple-3d-website",
+    previewUrl: "https://apple-three-psi.vercel.app/",
+    tag: "Web",
   },
 ];
 
@@ -70,9 +43,10 @@ const ProjectsSection = () => {
     setTag(newTag);
   };
 
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
+  // Filtering logic: If tag is "All", show all projects
+  const filteredProjects = tag === "All" 
+    ? projectsData 
+    : projectsData.filter((project) => project.tag === tag);
 
   const cardVariants = {
     initial: { y: 50, opacity: 0 },
@@ -85,36 +59,23 @@ const ProjectsSection = () => {
         My Projects
       </h2>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
-        />
+        <ProjectTag onClick={handleTagChange} name="All" isSelected={tag === "All"} />
+        <ProjectTag onClick={handleTagChange} name="Web" isSelected={tag === "Web"} />
+        <ProjectTag onClick={handleTagChange} name="Mobile" isSelected={tag === "Mobile"} />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
         {filteredProjects.map((project, index) => (
           <motion.li
-            key={index}
+            key={project.id}
             variants={cardVariants}
             initial="initial"
             animate={isInView ? "animate" : "initial"}
             transition={{ duration: 0.3, delay: index * 0.4 }}
           >
             <ProjectCard
-              key={project.id}
+              imgUrl={project.imgUrl}
               title={project.title}
               description={project.description}
-              imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
             />
